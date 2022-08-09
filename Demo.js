@@ -1,11 +1,8 @@
-let num1 = Math.floor(Math.random() * 10) + 1;
-let num2 = Math.floor(Math.random() * 10) + 1;
-let num3 = Math.floor(Math.random() * 10) + 1;
-let arr = undefined;
-let str = "hola";
-console.log(typeof str);
-if (!arr) {
-  console.log("AAAAAAAAAAAAAAAAAAAA");
+let num = 3.75;
+result = Math.floor(num);
+
+if (num != result) {
+  console.log("El numero no es entero");
+} else {
+  console.log("El numero es entero");
 }
-console.log(typeof arr);
-console.log(num1, num2, num3);

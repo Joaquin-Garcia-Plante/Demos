@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Styles -->
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 100%;
+            height: 5%;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="autocomplete" placeholder="Ingresa una ubicación">
+    <div id="map"></div>
+    <!-- Script for the map -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=key&libraries=places&callback=initMap">
+    </script>
+    <!-- Script -->
+    <script>
+        const mapDiv = document.getElementById('map');
+        let argCoords = {
+            lat: -34.397,
+            lng: -60.644
+        };
+        let map;
+        let marker;
+        let autocomplete;
+        function initMap() {
+            map = new google.maps.Map(mapDiv, {
+                center: argCoords,
+                zoom: 6
+            });
+            marker = new google.maps.Marker({
+                position: argCoords,
+                map: map,
+                title: 'Hello World!'
+            });
+            initAutocomplete();
+        }
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'), {
+                types: ['geocode']
+            });
+            autocomplete.addListener('place_changed', function () {
+                const place = autocomplete.getPlace();
+                console.log(place);
+                map.setCenter(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+            });
+        }
+    </script>
+</body>
+
+</html>
